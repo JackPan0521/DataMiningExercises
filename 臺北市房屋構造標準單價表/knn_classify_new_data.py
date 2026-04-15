@@ -92,7 +92,16 @@ def main() -> None:
     if args.k_min < 1 or args.k_max < args.k_min:
         raise ValueError("Invalid k range. Ensure k-min >= 1 and k-max >= k-min")
 
+    script_dir = Path(__file__).resolve().parent
+
     csv_path = Path(args.csv)
+    if not csv_path.is_absolute():
+        csv_path = script_dir / csv_path
+
+    report_csv = Path(args.report_csv)
+    if not report_csv.is_absolute():
+        report_csv = script_dir / report_csv
+
     raw_df = load_csv_with_fallback(csv_path)
     long_df = to_long_format(raw_df)
 
@@ -103,7 +112,7 @@ def main() -> None:
         raise ValueError("資料筆數不足，無法進行交叉驗證")
 
     best_k, k_report = select_best_k_for_classification(x, y, args.k_min, args.k_max, args.cv)
-    k_report.to_csv(args.report_csv, index=False, encoding="utf-8-sig")
+    k_report.to_csv(report_csv, index=False, encoding="utf-8-sig")
 
     try:
         x_train, x_test, y_train, y_test = train_test_split(
@@ -147,7 +156,7 @@ def main() -> None:
     print(f"Training rows: {len(x_train)}, Test rows: {len(x_test)}")
     print(f"Best k by CV accuracy: {best_k}")
     print(f"Holdout test accuracy: {test_acc:.4f}")
-    print(f"Saved k-search report: {args.report_csv}")
+    print(f"Saved k-search report: {report_csv}")
 
     print("\n=== New Input Prediction ===")
     print(f"Input: 總層數={floor}, 單價={price}")

@@ -209,9 +209,19 @@ def main() -> None:
     if args.k_min < 1 or args.k_max < args.k_min:
         raise ValueError("Invalid k range. Ensure k-min >= 1 and k-max >= k-min")
 
+    script_dir = Path(__file__).resolve().parent
+
     csv_path = Path(args.csv)
+    if not csv_path.is_absolute():
+        csv_path = script_dir / csv_path
+
     out_csv = Path(args.out_csv)
+    if not out_csv.is_absolute():
+        out_csv = script_dir / out_csv
+
     out_png = Path(args.out_png)
+    if not out_png.is_absolute():
+        out_png = script_dir / out_png
 
     raw_df = load_csv_with_fallback(csv_path)
     long_df = to_long_format(raw_df)

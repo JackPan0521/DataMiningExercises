@@ -1,0 +1,2 @@
+﻿model,best_params,valid_accuracy,valid_precision,valid_recall,valid_f1,valid_roc_auc,tree_depth,leaf_count
+Decision Tree,"{'class_weight': None, 'criterion': 'entropy', 'max_depth': 6, 'min_samples_leaf': 1, 'min_samples_split': 2}",0.7877094972067039,0.8163265306122449,0.5797101449275363,0.6779661016949152,0.7905797101449277,6,31

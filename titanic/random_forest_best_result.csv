@@ -1,0 +1,2 @@
+﻿model,best_params,valid_accuracy,valid_precision,valid_recall,valid_f1,valid_roc_auc
+Random Forest,"{'class_weight': 'balanced', 'max_depth': 8, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 10, 'n_estimators': 300}",0.7932960893854749,0.7285714285714285,0.7391304347826086,0.7338129496402878,0.8420289855072464

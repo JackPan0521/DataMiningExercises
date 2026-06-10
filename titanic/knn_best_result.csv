@@ -1,0 +1,2 @@
+model,best_n_neighbors,best_weights,best_p,accuracy,precision,recall,f1,roc_auc
+KNN,5,distance,1,0.8212290502793296,0.7681159420289855,0.7681159420289855,0.7681159420289855,0.8595520421607379
